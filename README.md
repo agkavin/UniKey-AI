@@ -114,11 +114,20 @@ async def local_chat(llm=Depends(get_byok_llm(require_base_url_for=["ollama"])))
 
 ---
 
-## Run the Example App
+## Run the Example Server
 
 ```bash
-uvicorn examples.main:app --reload
+uvicorn examples.server.main:app --reload
 # Open http://localhost:8000/docs
+```
+
+## Run the Demo Chat App
+
+```bash
+cd examples/chat-app
+npm install
+npm run dev
+# Open http://localhost:5174
 ```
 
 ## Run Tests
@@ -140,7 +149,9 @@ unikey_ai/
 └── integrations/
     └── fastapi_utils.py           # BYOKMiddleware + get_byok_llm()
 examples/
-└── main.py                        # Working FastAPI demo
+├── server/
+│   └── main.py                    # Working FastAPI demo
+└── chat-app/                      # React/Vite/Tailwind v4 UI
 tests/
 ├── test_factory.py                # Unit tests (no network)
 └── test_middleware.py             # Integration tests (monkeypatched)
