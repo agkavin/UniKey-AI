@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #52525b; }
+
+/* Smooth scroll for chat */
+.chat-scroll { scroll-behavior: smooth; }
+
+/* Streaming cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: '▋';
+  display: inline-block;
+  animation: blink 0.8s step-end infinite;
+  color: #a78bfa;
+  margin-left: 1px;
+}
+
+/* Typing dots */
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
+.dot-1 { animation: bounce-dot 1.2s infinite 0s; }
+.dot-2 { animation: bounce-dot 1.2s infinite 0.2s; }
+.dot-3 { animation: bounce-dot 1.2s infinite 0.4s; }
+
+/* Message fade-in */
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.msg-in { animation: msg-in 0.25s ease-out forwards; }
+
+/* Slide-down for connection panel */
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide-down { animation: slide-down 0.2s ease-out forwards; }
+
+/* Prose overrides for dark mode */
+.prose-dark code {
+  font-family: 'JetBrains Mono', monospace;
+  background: #27272a;
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+.prose-dark pre {
+  background: #18181b !important;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+}
+.prose-dark pre code { background: transparent; padding: 0; }
