@@ -1,0 +1,4 @@
+# Runtime — installed from the local package
+-e ../../..
+uvicorn[standard]
+fastapi

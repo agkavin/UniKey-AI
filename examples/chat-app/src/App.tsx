@@ -242,9 +242,12 @@ export default function App() {
         <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
 
           {/* Panel header / toggle */}
-          <button
+          <div
+            role="button"
+            tabIndex={0}
             onClick={() => setConfigOpen(o => !o)}
-            className="w-full flex items-center justify-between px-4 py-3 hover:bg-zinc-800/50 transition-colors"
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setConfigOpen(o => !o) }}
+            className="w-full flex items-center justify-between px-4 py-3 hover:bg-zinc-800/50 transition-colors cursor-pointer select-none"
           >
             <div className="flex items-center gap-2.5">
               <div className={`w-2 h-2 rounded-full ${connected ? 'bg-green-400' : 'bg-zinc-600'}`} />
@@ -270,7 +273,7 @@ export default function App() {
               )}
               {configOpen ? <ChevronUp size={16} className="text-zinc-500" /> : <ChevronDown size={16} className="text-zinc-500" />}
             </div>
-          </button>
+          </div>
 
           {/* Config fields */}
           {configOpen && (
